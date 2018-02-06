@@ -63,6 +63,9 @@
         watch: {
             width: function () {
                 this.update();
+            },
+            text: function () {
+                this.update()
             }
         },
         methods: {
