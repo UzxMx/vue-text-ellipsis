@@ -41,6 +41,10 @@
                 type: Boolean,
                 default: userConfig.isImmediate,
             },
+            collapsed: {
+                type: Boolean,
+                default: true
+            }
         },
         data() {
             return {
@@ -66,29 +70,36 @@
             },
             text: function () {
                 this.update()
+            },
+            collapsed: function () {
+                this.update()
             }
         },
         methods: {
             init() {
                 // 初始化
-                this.span  = document.createElement('span');
-                this.span.style.opacity = 0;
-                this.span.style['white-space'] = 'nowrap';
-                this.span.style['font-weight'] = this.fontWeight || userConfig.fontWeight;
-                this.span.style['font-family'] = this.fontFamily || userConfig.fontFamily;
-                this.span.style['font-size'] = this.fontSize|| userConfig.fontSize;
-                document.body.append(this.span);
-                const font = {
-                    text: this.text,
-                    width: this.parentWidth || parseFloat(getComputedStyle(this.$el.parentElement).width, 10),
-                    lineHeight: this.lineHeight || userConfig.lineHeight,
-                    lineNum: this.lineNum || userConfig.lineNum,
-                    fontFamily: this.fontFamily || userConfig.fontFamily,
-                    fontSize: this.fontSize || userConfig.fontSize,
-                    fontWeight: this.fontWeight || userConfig.fontWeight,
-                    left: this.left || userConfig.left,
-                };
-                this.textArr = core(font, this.span);
+                if (this.collapsed) {
+                    this.span  = document.createElement('span');
+                    this.span.style.opacity = 0;
+                    this.span.style['white-space'] = 'nowrap';
+                    this.span.style['font-weight'] = this.fontWeight || userConfig.fontWeight;
+                    this.span.style['font-family'] = this.fontFamily || userConfig.fontFamily;
+                    this.span.style['font-size'] = this.fontSize|| userConfig.fontSize;
+                    document.body.append(this.span);
+                    const font = {
+                        text: this.text,
+                        width: this.parentWidth || parseFloat(getComputedStyle(this.$el.parentElement).width, 10),
+                        lineHeight: this.lineHeight || userConfig.lineHeight,
+                        lineNum: this.lineNum || userConfig.lineNum,
+                        fontFamily: this.fontFamily || userConfig.fontFamily,
+                        fontSize: this.fontSize || userConfig.fontSize,
+                        fontWeight: this.fontWeight || userConfig.fontWeight,
+                        left: this.left || userConfig.left,
+                    };
+                    this.textArr = core(font, this.span);
+                } else {
+                    this.textArr = [this.text]
+                }
                 this.destory();
             },
             destory() {
