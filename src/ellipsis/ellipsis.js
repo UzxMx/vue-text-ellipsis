@@ -1,5 +1,4 @@
-//import core from './core';
-import core from 'text-ellipsis-core';
+import core from './core';
 import { userConfig } from './config';
 import { addResizeListener, removeResizeListener } from './resize-event';
 

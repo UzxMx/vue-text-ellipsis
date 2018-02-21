@@ -1,6 +1,5 @@
 <script>
-    //import core from './core';
-    import core from 'text-ellipsis-core';
+    import core from './core';
     import { userConfig } from './config';
     import { addResizeListener, removeResizeListener }from './resize-event';
 
@@ -103,7 +102,9 @@
                 this.destory();
             },
             destory() {
-                this.span.remove();
+                if (this.span.remove) {
+                    this.span.remove();
+                }
                 this.span = '';
             },
             update() {

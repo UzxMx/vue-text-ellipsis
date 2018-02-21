@@ -1,8 +1,8 @@
-import app from './ellipsis/ellipsis.vue';
+import Ellipsis from './ellipsis/ellipsis.vue';
 import { assignConfig } from './ellipsis/config';
 
 const install = (Vue, conf) => {
-    Vue.component(app.name, app);
+    Vue.component(Ellipsis.name, Ellipsis);
     if (conf) {
         assignConfig(conf);
     }
@@ -15,6 +15,7 @@ if (typeof window !== 'undefined' && window.Vue) {
 
 export default {
     install,
+    Ellipsis
 };
 // module.exports = {
 //    install
